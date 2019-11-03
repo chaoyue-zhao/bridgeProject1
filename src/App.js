@@ -1,11 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
+import Result from './components/Results.js';
+import SearchFrom from './components/SearchForm.js';
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [hasResults, setHasResults] = useState(false);
+
+  function handleSearchQuery (query) {
+    setSearchQuery(query);
+    setHasResults(true);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        gitHub app that does Github related things...
-      </header>
+      <h1>Github Activity Viewer</h1>
+      { !hasResults ?
+        <SearchFrom
+        getUserName={(searchQuery) => handleSearchQuery(searchQuery)}/>
+        :
+        <Result
+          userName={searchQuery}
+        />
+      }
     </div>
   );
 }
