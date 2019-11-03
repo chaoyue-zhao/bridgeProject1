@@ -1,29 +1,21 @@
-import React, {useState} from 'react';
-import Result from './components/Results.js';
-import SearchFrom from './components/SearchForm.js';
+import React from 'react';
+import Results from './components/Results.js';
+import SearchForm from './components/SearchForm.js';
+import { connect } from "react-redux";
 
-function App() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [hasResults, setHasResults] = useState(false);
-
-  function handleSearchQuery (query) {
-    setSearchQuery(query);
-    setHasResults(true);
-  }
-
+function App({hasResults}) {
   return (
-    <div className="App">
+      <div className="App">
       <h1>Github Activity Viewer</h1>
-      { !hasResults ?
-        <SearchFrom
-        getUserName={(searchQuery) => handleSearchQuery(searchQuery)}/>
-        :
-        <Result
-          userName={searchQuery}
-        />
-      }
+      { !hasResults ? <SearchForm/> : <Results/> }
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  hasResults: state.hasResults
+});
+
+export default connect(
+  mapStateToProps
+)(App);

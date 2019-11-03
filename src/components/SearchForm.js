@@ -1,13 +1,15 @@
-import React, {useState } from 'react';
+import React, {useState} from 'react';
+import { connect } from "react-redux";
+import {SET_HAS_RESULTS, UPDATE_USERNAME} from "../action";
 
-function SearchForm (props) {
-  const [searchQuery, setSearchQuery ] = useState('');
+function SearchForm ({updateUsername, setHasResults}) {
+
+  const [searchQuery, setSearchQuery] = useState('');
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    setSearchQuery(searchQuery);
-    console.log('SEARCH_QUERY', searchQuery);
-    props.getUserName(searchQuery);
+    setHasResults(true);
+    updateUsername(searchQuery);
   }
 
   function handleChange(e) {
@@ -44,4 +46,12 @@ function SearchForm (props) {
   )
 }
 
-export default SearchForm;
+const mapDispatchToProps = dispatch => ({
+  updateUsername: (useName) => dispatch(UPDATE_USERNAME(useName)),
+  setHasResults: () => dispatch(SET_HAS_RESULTS())
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SearchForm);
