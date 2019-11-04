@@ -22,9 +22,10 @@ function SearchForm ({updateUsername, setHasResults}) {
         action="#"
         className="SearchForm__form"
         onSubmit={handleFormSubmit}
+        data-testid="form"
       >
         <label
-          htmlFor="useName"
+          htmlFor="userName"
           className="SearchForm__label"
         >
           Github Username:
@@ -32,6 +33,7 @@ function SearchForm ({updateUsername, setHasResults}) {
         <input
           type="text"
           name="userName"
+          id="userName"
           className="SearchForm__input"
           value={searchQuery}
           onChange={handleChange}

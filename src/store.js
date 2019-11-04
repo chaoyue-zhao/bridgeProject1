@@ -10,7 +10,7 @@ const initialState = {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const rootReducer = (state = initialState, action) => {
+export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case ("HAS_RESULTS") :
       return {
@@ -37,7 +37,7 @@ const rootReducer = (state = initialState, action) => {
   }
 };
 
-export default createStore(
+export const store = createStore (
   rootReducer,
   initialState,
   composeEnhancers(applyMiddleware(thunk))

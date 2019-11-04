@@ -11,7 +11,7 @@ function Results(
   {
   useEffect(()=> {
     mapAPIRequests(userName);
-  }, [userName]);
+  }, [mapAPIRequests,userName]);
 
   return (
     <div className="Results">

@@ -29,8 +29,6 @@ export const FETCH_API_DATA_THUNK = (userName) => {
     }).catch(error => {
       console.log(error.message);
     });
-    console.log('RESPONSE', response);
-    console.log('USER_NAME', userName);
     dispatch(FORKED_EVENTS(response.data.filter(event => event.type === 'ForkEvent')));
     dispatch(PULL_REQUESTS(response.data.filter(event => event.type === 'PullRequestEvent')));
   };
